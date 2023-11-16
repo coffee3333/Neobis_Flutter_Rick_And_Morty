@@ -1,0 +1,40 @@
+{
+    "episodes" : [
+        {
+            "id" : 0,
+            "serialNumber" : 1,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        },
+        {
+            "id" : 1,
+            "serialNumber" : 2,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        },
+        {
+            "id" : 2,
+            "serialNumber" : 3,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        },
+        {
+            "id" : 3,
+            "serialNumber" : 4,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        },
+        {
+            "id" : 4,
+            "serialNumber" : 5,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        },
+        {
+            "id" : 5,
+            "serialNumber" : 6,
+            "serialName" : "Pilot",
+            "serialDate" : "2013-04-20"
+        }
+    ]
+}

@@ -1,0 +1,146 @@
+{
+    "personages" : [
+        {
+            "id" : 0,
+            "isAlive" : true,
+            "name" : "Rick Sanchez",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 1,
+            "isAlive" : true,
+            "name" : "Direktor Agency",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 2,
+            "isAlive" : true,
+            "name" : "Mothy Smith",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 3,
+            "isAlive" : true,
+            "name" : "Sammer Smith",
+            "race" : "Human",
+            "sex" : "female",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 4,
+            "isAlive" : false,
+            "name" : "Albert Einstein",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 5,
+            "isAlive" : false,
+            "name" : "Alhan Rails",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 6,
+            "isAlive" : true,
+            "name" : "Rick Sanchez",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+
+
+        {
+            "id" : 7,
+            "isAlive" : true,
+            "name" : "Rick Sanchez",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 8,
+            "isAlive" : true,
+            "name" : "Direktor Agency",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 9,
+            "isAlive" : true,
+            "name" : "Mothy Smith",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 10,
+            "isAlive" : true,
+            "name" : "Sammer Smith",
+            "race" : "Human",
+            "sex" : "female",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 11,
+            "isAlive" : false,
+            "name" : "Albert Einstein",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 12,
+            "isAlive" : false,
+            "name" : "Alhan Rails",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        },
+        {
+            "id" : 13,
+            "isAlive" : true,
+            "name" : "Rick Sanchez",
+            "race" : "Human",
+            "sex" : "male",
+            "placeOfBirth" : "Earth C-137",
+            "placeOfLiving" : "Earth ",
+            "fotoUrl" : "assets/somephoto"
+        }
+    ]
+}
