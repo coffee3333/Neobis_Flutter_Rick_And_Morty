@@ -8,7 +8,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 1,
@@ -18,7 +18,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 2,
@@ -28,7 +28,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 3,
@@ -38,7 +38,7 @@
             "sex" : "female",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 4,
@@ -48,7 +48,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 5,
@@ -58,7 +58,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 6,
@@ -68,7 +68,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
 
 
@@ -80,7 +80,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 8,
@@ -90,7 +90,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 9,
@@ -100,7 +100,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 10,
@@ -110,7 +110,7 @@
             "sex" : "female",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 11,
@@ -120,7 +120,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 12,
@@ -130,7 +130,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         },
         {
             "id" : 13,
@@ -140,7 +140,7 @@
             "sex" : "male",
             "placeOfBirth" : "Earth C-137",
             "placeOfLiving" : "Earth ",
-            "fotoUrl" : "assets/somephoto"
+            "fotoUrl" : "assets/images/image_rick.png"
         }
     ]
 }

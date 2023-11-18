@@ -6,25 +6,49 @@ import 'package:neobis_flutter_rick_and_morty/dependencies/container/di_containe
 import 'package:neobis_flutter_rick_and_morty/domain/personage/personage.dart';
 
 class MainPageProvider extends ChangeNotifier with PersonagesMapper {
-  List<Personage> personages = [];
+  bool _isGrid = false;
+  List<Personage> _personages = [];
+  List<Personage> personagesFiltered = [];
+  List<Personage> personagesSearched = [];
+
   final service = getIt.get<GetData>();
 
   String _searchingPersonage = '';
 
-  int get lengthPersonages => personages.length;
+  int get lengthPersonages => personagesSearched.length;
+  bool get searchBarNotActive => _searchingPersonage.isEmpty;
+  bool get isGridActive => _isGrid;
 
   void changeSearchPersonage(String searchingPersonage) {
     _searchingPersonage = searchingPersonage;
-    print(_searchingPersonage);
-    // notifyListeners();
-  }
-
-  String getName(int index) {
-    return personages[index].name;
+    _searchingPersonage.isNotEmpty
+        ? personagesSearched = personagesFiltered
+            .where((personage) => personage.name
+                .toLowerCase()
+                .contains(_searchingPersonage.toLowerCase()))
+            .toList()
+        : personagesSearched = personagesFiltered;
+    notifyListeners();
   }
 
   void updateList() async {
-    personages = mapData(dataList: await service.readJson());
+    _personages = mapData(dataList: await service.readJson());
+    personagesFiltered = _personages;
+    personagesSearched = personagesFiltered;
     notifyListeners();
+  }
+
+  void changeViewContentToGrid() {
+    _isGrid = false;
+    notifyListeners();
+  }
+
+  void changeViewContentToList() {
+    _isGrid = true;
+    notifyListeners();
+  }
+
+  Personage getPersonage(index) {
+    return personagesSearched[index];
   }
 }

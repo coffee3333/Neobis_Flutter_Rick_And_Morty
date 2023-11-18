@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
+import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_builder_view.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_info_view.dart';
 import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
@@ -21,10 +23,14 @@ class _MainViewState extends State<MainView> {
     return Scaffold(
       backgroundColor: ColorsConsts.mainBgColor,
       appBar: _getAppBar(),
-      body: const Column(
-        children: [
-          ListViewBuilder(),
-        ],
+      body: const Padding(
+        padding: EdgeInsets.only(top: 30, left: 16, right: 30),
+        child: Column(
+          children: [
+            ListInfoView(),
+            ListViewBuilder(),
+          ],
+        ),
       ),
     );
   }
@@ -32,13 +38,10 @@ class _MainViewState extends State<MainView> {
   AppBar _getAppBar() {
     return AppBar(
       backgroundColor: ColorsConsts.mainBgColor,
+      elevation: 0,
       title: TextField(
         controller: _searchController,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-        ),
+        style: TextStylesConsts.mainWhiteStyle,
         cursorColor: Colors.white,
         decoration: InputDecoration(
           filled: true,
@@ -72,11 +75,7 @@ class _MainViewState extends State<MainView> {
             ),
           ),
           hintText: 'Найти персонажа',
-          hintStyle: const TextStyle(
-            color: ColorsConsts.searchTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
+          hintStyle: TextStylesConsts.mainGrayStyle,
         ),
         onChanged: (value) {
           Provider.of<MainPageProvider>(context, listen: false)
