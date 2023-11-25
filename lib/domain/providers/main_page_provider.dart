@@ -57,14 +57,12 @@ class MainPageProvider extends ChangeNotifier {
     } catch (error) {
       if (error is DioException) {
         if (error.response!.statusCode == 404) {
-          print("404");
           _isLoading = false;
           _isNoData = true;
           notifyListeners();
           // return null;
         }
         _isProblemsService = true;
-        print("unexpected");
         notifyListeners();
         // return null;
       }

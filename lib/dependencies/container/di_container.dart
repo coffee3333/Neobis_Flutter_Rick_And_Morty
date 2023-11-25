@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:neobis_flutter_rick_and_morty/data/api/api_util.dart';
-import 'package:neobis_flutter_rick_and_morty/data/api/model/characters/api_character_info.dart';
 import 'package:neobis_flutter_rick_and_morty/data/api/service/service_api.dart';
 import 'package:neobis_flutter_rick_and_morty/data/local/service/local_json_reader.dart';
 import 'package:neobis_flutter_rick_and_morty/data/repository/service_data_repository.dart';
