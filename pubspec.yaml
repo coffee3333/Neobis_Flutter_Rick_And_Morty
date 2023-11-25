@@ -73,12 +73,17 @@ flutter:
     - assets/jsons/episodes.json
     - assets/jsons/personages.json
 
-    - assets/icons/line1.svg
-    - assets/icons/search.svg
-    - assets/icons/sort3.svg
-    - assets/icons/grid.svg
-    - assets/icons/list.svg
-    - assets/images/image_rick.png
+    - assets/images/
+    - assets/icons/
+
+    # - assets/icons/line1.svg
+    # - assets/icons/search.svg
+    # - assets/icons/sort3.svg
+    # - assets/icons/grid.svg
+    # - assets/icons/list.svg
+    # - assets/images/image_rick.png
+    # - assets/images
+    # - assets/icons/arrow2.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

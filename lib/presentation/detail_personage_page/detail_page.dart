@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/personage/personage.dart';
+import 'package:neobis_flutter_rick_and_morty/domain/models/character_models/character.dart';
 
 class DetailPersonagePage extends StatelessWidget {
-  final Personage personage;
-  const DetailPersonagePage({super.key, required this.personage});
+  final Character character;
+  const DetailPersonagePage({super.key, required this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class DetailPersonagePage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              personage.fotoUrl, // Replace with the path to your image asset
+            Image.network(
+              character.image, // Replace with the path to your image asset
               fit: BoxFit.cover,
             ),
             // Blurred Background

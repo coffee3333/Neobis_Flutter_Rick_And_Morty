@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/filter_characters_view.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_builder_view.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_info_view.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,23 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   final _searchController = TextEditingController();
+
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  void _onTextChanged(String text) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 200), () {
+      Provider.of<MainPageProvider>(context, listen: false)
+          .searchPersonage(text);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +88,17 @@ class _MainViewState extends State<MainView> {
                       SvgPicture.asset(AssetsConsts.appBarSearchSeparatorIcon),
                 ),
                 const SizedBox(width: 12),
-                UnconstrainedBox(
-                  child: SvgPicture.asset(AssetsConsts.appBarSortIcon),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FilterCharactersView()),
+                    );
+                  },
+                  child: UnconstrainedBox(
+                    child: SvgPicture.asset(AssetsConsts.appBarSortIcon),
+                  ),
                 ),
               ],
             ),
@@ -77,10 +106,7 @@ class _MainViewState extends State<MainView> {
           hintText: 'Найти персонажа',
           hintStyle: TextStylesConsts.mainGrayStyle,
         ),
-        onChanged: (value) {
-          Provider.of<MainPageProvider>(context, listen: false)
-              .changeSearchPersonage(value);
-        },
+        onChanged: _onTextChanged,
       ),
     );
   }

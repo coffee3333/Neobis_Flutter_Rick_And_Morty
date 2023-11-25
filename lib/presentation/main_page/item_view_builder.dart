@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/personage/personage.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/detail_personage_page/detail_page.dart';
+import 'package:neobis_flutter_rick_and_morty/domain/models/character_models/character.dart';
 
 enum TypeItem {
   list,
@@ -10,9 +9,9 @@ enum TypeItem {
 
 class ItemViewBuilder extends StatelessWidget {
   final TypeItem typeItem;
-  final Personage personage;
+  final Character character;
   const ItemViewBuilder(
-      {super.key, required this.personage, required this.typeItem});
+      {super.key, required this.character, required this.typeItem});
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +30,17 @@ class ItemViewBuilder extends StatelessWidget {
   Widget _listItemBuilder(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailPersonagePage(
-              personage: personage,
-            ),
-          ),
-        );
+        print("detail");
       },
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child: Image.asset(
-              personage.fotoUrl,
-              width: 74,
-              height: 74,
+            child: Image.network(
+              character.image,
+              width: 74.0,
+              height: 74.0,
+              // You can add other parameters like fit, alignment, etc.
             ),
           ),
           const SizedBox(
@@ -64,8 +57,8 @@ class ItemViewBuilder extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(100),
-          child: Image.asset(
-            personage.fotoUrl,
+          child: Image.network(
+            character.image,
             width: 120,
             height: 122,
           ),
@@ -83,21 +76,16 @@ class ItemViewBuilder extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: aligment,
       children: [
-        personage.isAlive
-            ? Text(
-                "Живой".toUpperCase(),
-                style: TextStylesConsts.aliveGreenStyle,
-              )
-            : Text(
-                "Мертвый".toUpperCase(),
-                style: TextStylesConsts.notAliveGreenStyle,
-              ),
         Text(
-          personage.name,
+          character.status,
+          style: TextStylesConsts.aliveGreenStyle,
+        ),
+        Text(
+          character.name,
           style: TextStylesConsts.nameItemWhiteStyle,
         ),
         Text(
-          "${personage.race}, ${personage.sex}",
+          "${character.species}, ${character.gender}",
           style: TextStylesConsts.mainGrayStyle,
         )
       ],

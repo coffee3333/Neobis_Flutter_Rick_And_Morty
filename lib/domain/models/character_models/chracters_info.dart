@@ -1,8 +1,8 @@
 class CharacterInfo {
   final int quantity;
   final int pages;
-  final int nextPage;
-  final int prevPage;
+  final int? nextPage;
+  final int? prevPage;
 
   CharacterInfo({
     required this.quantity,

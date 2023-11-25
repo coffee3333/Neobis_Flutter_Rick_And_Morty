@@ -7,7 +7,7 @@ class ApiCharacter {
   final String originName;
   final String locationName;
   final String image;
-  final List<int> episodes;
+  final List<dynamic> episodes;
 
   ApiCharacter.fromApi(Map<String, dynamic> map)
       : id = map["id"],
@@ -18,18 +18,5 @@ class ApiCharacter {
         originName = map["origin"]['name'],
         locationName = map["location"]['name'],
         image = map["image"],
-        episodes = _getPages(map["episode"]);
-
-  static List<int> _getPages(List<dynamic> links) {
-    List<int> answers = [];
-    for (var link in links) {
-      answers.add(_getValueFromLink(link));
-    }
-    return answers;
-  }
-
-  static int _getValueFromLink(String link) {
-    List<String> splitedLink = link.split("/");
-    return int.parse(splitedLink.last);
-  }
+        episodes = map["episode"];
 }

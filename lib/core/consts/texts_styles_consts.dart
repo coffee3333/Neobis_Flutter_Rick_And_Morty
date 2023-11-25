@@ -46,4 +46,12 @@ class TextStylesConsts {
     letterSpacing: 0.5,
     height: 1.5,
   );
+
+  static const TextStyle appBarWhiteStyle = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 24.0,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.15,
+    color: Colors.white,
+  );
 }

@@ -17,11 +17,13 @@ class _ListInfoViewState extends State<ListInfoView> {
   Widget build(BuildContext context) {
     return Consumer<MainPageProvider>(
       builder: (context, provider, child) {
-        return Container(
-            margin: const EdgeInsets.only(bottom: 30),
-            child: provider.searchBarNotActive
-                ? _infoQantity(provider)
-                : _infoSearch());
+        return provider.isNoProblemsService
+            ? Container()
+            : Container(
+                margin: const EdgeInsets.only(bottom: 30),
+                child: provider.searchBarNotActive
+                    ? _infoQantity(provider)
+                    : _infoSearch());
       },
     );
   }
@@ -30,11 +32,8 @@ class _ListInfoViewState extends State<ListInfoView> {
     return Row(
       children: [
         Text(
-          "Всего персонажей: ".toUpperCase(),
-          style: TextStylesConsts.mainGrayStyle,
-        ),
-        Text(
-          provider.lengthPersonages.toString(),
+          "Всего персонажей: ${provider.isLoading ? "" : provider.charactersInfos.info.quantity}"
+              .toUpperCase(),
           style: TextStylesConsts.mainGrayStyle,
         ),
         const Spacer(),
@@ -54,18 +53,13 @@ class _ListInfoViewState extends State<ListInfoView> {
   }
 
   _changeViewContent(MainPageProvider provider) {
-    return provider.isGridActive
-        ? GestureDetector(
-            onTap: () {
-              provider.changeViewContentToGrid();
-            },
-            child: SvgPicture.asset(AssetsConsts.listListInfoIcon),
-          )
-        : GestureDetector(
-            onTap: () {
-              provider.changeViewContentToList();
-            },
-            child: SvgPicture.asset(AssetsConsts.gridListInfoIcon),
-          );
+    return GestureDetector(
+      onTap: () {
+        provider.changeViewContent();
+      },
+      child: SvgPicture.asset(provider.isGridActive
+          ? AssetsConsts.listListInfoIcon
+          : AssetsConsts.gridListInfoIcon),
+    );
   }
 }
