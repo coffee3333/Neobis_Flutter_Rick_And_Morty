@@ -3,7 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/provider_filter_charcters_page/filter_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class FilterCharactersView extends StatefulWidget {
@@ -16,7 +17,7 @@ class FilterCharactersView extends StatefulWidget {
 class _FilterCharactersViewState extends State<FilterCharactersView> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<MainPageProvider>(
+    return Consumer<FilterPageProvider>(
       builder: (context, provider, child) {
         return Scaffold(
           appBar: AppBar(
@@ -92,7 +93,7 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
     );
   }
 
-  _getStatusMenu(MainPageProvider provider) {
+  _getStatusMenu(FilterPageProvider provider) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,10 +110,8 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
               children: [
                 Checkbox(
                   // activeColor: Colors.white,
-                  value: provider.isStausActive,
-                  onChanged: (value) {
-                    provider.status = 'alive';
-                  },
+                  value: false,
+                  onChanged: (value) {},
                 ),
                 const Text(
                   "Alive",

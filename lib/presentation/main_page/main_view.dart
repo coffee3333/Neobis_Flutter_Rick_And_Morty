@@ -1,14 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
+import 'package:neobis_flutter_rick_and_morty/core/consts/routes_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/filter_characters_view.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_builder_view.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/main_page/list_info_view.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/list_builder_view.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/list_info_view.dart';
 import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
@@ -90,11 +90,7 @@ class _MainViewState extends State<MainView> {
                 const SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FilterCharactersView()),
-                    );
+                    Navigator.pushNamed(context, RoutesConsts.filterCharacters);
                   },
                   child: UnconstrainedBox(
                     child: SvgPicture.asset(AssetsConsts.appBarSortIcon),

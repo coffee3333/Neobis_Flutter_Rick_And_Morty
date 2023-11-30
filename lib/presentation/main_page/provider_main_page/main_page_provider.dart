@@ -7,9 +7,11 @@ import 'package:neobis_flutter_rick_and_morty/dependencies/container/di_containe
 import 'package:neobis_flutter_rick_and_morty/domain/models/character_models/character.dart';
 import 'package:neobis_flutter_rick_and_morty/domain/models/characters_infos.dart';
 import 'package:neobis_flutter_rick_and_morty/domain/repository/service_repository.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/models/characters_params.dart';
 
 class MainPageProvider extends ChangeNotifier {
   final ServiceRepository _service = getIt.get<ServiceDataRepository>();
+  final CharactersParams _chractersParam = getIt.get<CharactersParams>();
   late CharactersInfos charactersInfos;
 
   bool _isGrid = false;
@@ -17,39 +19,33 @@ class MainPageProvider extends ChangeNotifier {
   bool _isNoData = false;
   bool _isProblemsService = false;
 
-  String _name = "";
-  String _status = "";
-  String _species = "";
-  String _type = "";
-  String _gender = "";
   late List<Character> characters;
   late List<Character> filteredCharacters = [];
 
   int get lengthCharcters => filteredCharacters.length;
-  bool get searchBarNotActive => _name.isEmpty;
+  bool get searchBarNotActive => _chractersParam.name.isEmpty;
   bool get isGridActive => _isGrid;
   bool get isLoading => _isLoading;
   bool get isNoData => _isNoData;
   bool get isNoProblemsService => _isProblemsService;
-  bool get isStausActive => _status.isNotEmpty;
-  set status(String status) {
-    _status = status;
-  }
+
+  CharactersParams get filterParams => _chractersParam;
+  // set filterParams(CharactersParams params) => _chractersParam = params;
 
   MainPageProvider() {
     _initData();
   }
 
-  Future<bool> _getData({required numberPage}) async {
+  Future<bool> _getData() async {
     //I think try catch should be in domain layer, but i didn't have much time to refactor code
     try {
       final CharactersInfos data = await _service.getCharacters(
-          numberPage: numberPage,
-          name: _name,
-          status: _status,
-          species: _species,
-          type: _type,
-          gender: _gender);
+          numberPage: _chractersParam.numberPage,
+          name: _chractersParam.name,
+          status: _chractersParam.status,
+          species: _chractersParam.species,
+          type: _chractersParam.type,
+          gender: _chractersParam.gender);
 
       charactersInfos = data;
 
@@ -71,23 +67,18 @@ class MainPageProvider extends ChangeNotifier {
   }
 
   _initData() async {
-    print("init data");
-
-    final data = await _getData(numberPage: 0);
-
-    if (data) {
+    if (await _getData()) {
       print(charactersInfos.info.pages);
       characters = charactersInfos.characters;
       filteredCharacters.addAll(characters);
       _isLoading = false;
       notifyListeners();
     }
-    print("init data end");
   }
 
   void loadMoreData({required numberPage}) async {
-    final data = await _getData(numberPage: numberPage);
-    if (data) {
+    _chractersParam.numberPage = numberPage;
+    if (await _getData()) {
       characters.addAll(charactersInfos.characters);
       filteredCharacters = characters;
       notifyListeners();
@@ -97,11 +88,11 @@ class MainPageProvider extends ChangeNotifier {
   void searchPersonage(String text) async {
     _isNoData = false;
     _isLoading = true;
-    _name = text;
+    _chractersParam.numberPage = 0;
+    _chractersParam.name = text;
     notifyListeners();
 
-    final data = await _getData(numberPage: 0);
-    if (data) {
+    if (await _getData()) {
       characters = charactersInfos.characters;
       filteredCharacters = characters;
 

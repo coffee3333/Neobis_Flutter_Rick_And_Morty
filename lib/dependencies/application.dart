@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/routes_consts.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/filter_characters_page.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/main_page.dart';
 
 class Application extends StatelessWidget {
@@ -13,6 +14,8 @@ class Application extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         RoutesConsts.home: (context) => const MainPage(),
+        RoutesConsts.filterCharacters: (context) =>
+            const FilterCharactersPage(),
       },
       initialRoute: RoutesConsts.home,
     );

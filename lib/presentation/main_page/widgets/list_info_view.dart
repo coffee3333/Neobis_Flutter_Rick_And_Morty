@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class ListInfoView extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/main_page/item_view_builder.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/item_view_builder.dart';
 import 'package:provider/provider.dart';
 
 class ListViewBuilder extends StatefulWidget {

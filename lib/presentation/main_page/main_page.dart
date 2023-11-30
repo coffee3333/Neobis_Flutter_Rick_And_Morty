@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_rick_and_morty/dependencies/container/di_container.dart';
-import 'package:neobis_flutter_rick_and_morty/domain/providers/main_page_provider.dart';
+import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/main_view.dart';
 import 'package:provider/provider.dart';
 
