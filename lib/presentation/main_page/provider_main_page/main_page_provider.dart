@@ -11,7 +11,7 @@ import 'package:neobis_flutter_rick_and_morty/presentation/models/characters_par
 
 class MainPageProvider extends ChangeNotifier {
   final ServiceRepository _service = getIt.get<ServiceDataRepository>();
-  final CharactersParams _chractersParam = getIt.get<CharactersParams>();
+  CharactersParams _chractersParam = getIt.get<CharactersParams>();
   late CharactersInfos charactersInfos;
 
   bool _isGrid = false;
@@ -30,7 +30,21 @@ class MainPageProvider extends ChangeNotifier {
   bool get isNoProblemsService => _isProblemsService;
 
   CharactersParams get filterParams => _chractersParam;
-  // set filterParams(CharactersParams params) => _chractersParam = params;
+
+  updateFilterParams(Object params) async {
+    _chractersParam = params as CharactersParams;
+    _isNoData = false;
+    _isLoading = true;
+    notifyListeners();
+
+    if (await _getData()) {
+      characters = charactersInfos.characters;
+      filteredCharacters = characters;
+
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 
   MainPageProvider() {
     _initData();
@@ -50,25 +64,27 @@ class MainPageProvider extends ChangeNotifier {
       charactersInfos = data;
 
       return true;
-    } catch (error) {
-      if (error is DioException) {
-        if (error.response!.statusCode == 404) {
-          _isLoading = false;
-          _isNoData = true;
-          notifyListeners();
-          // return null;
-        }
-        _isProblemsService = true;
+    } on DioException catch (exception) {
+      print("error");
+
+      if (exception.response!.statusCode == 404) {
+        print("404");
+        _isLoading = false;
+        _isNoData = true;
         notifyListeners();
-        // return null;
+        return false;
       }
+      print("another");
+      _isProblemsService = true;
+      notifyListeners();
+
+      print("tyt");
     }
     return false;
   }
 
   _initData() async {
     if (await _getData()) {
-      print(charactersInfos.info.pages);
       characters = charactersInfos.characters;
       filteredCharacters.addAll(characters);
       _isLoading = false;
@@ -96,6 +112,7 @@ class MainPageProvider extends ChangeNotifier {
       characters = charactersInfos.characters;
       filteredCharacters = characters;
 
+      _isProblemsService = false;
       _isLoading = false;
       notifyListeners();
     }

@@ -7,4 +7,5 @@ class ColorsConsts {
   static const Color aliveTextColor = Color(0xff43D049);
   static const Color notAliveTextColor = Color(0xffEB5757);
   static const Color separatorColor = Color(0xff152A3A);
+  static const Color checkBoxBorderColor = Color(0xff5B6975);
 }

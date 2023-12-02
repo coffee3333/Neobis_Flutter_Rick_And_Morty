@@ -32,7 +32,7 @@ class _ListInfoViewState extends State<ListInfoView> {
     return Row(
       children: [
         Text(
-          "Всего персонажей: ${provider.isLoading ? "" : provider.charactersInfos.info.quantity}"
+          "Total characters: ${provider.isLoading ? "" : provider.charactersInfos.info.quantity}"
               .toUpperCase(),
           style: TextStylesConsts.mainGrayStyle,
         ),
@@ -46,7 +46,7 @@ class _ListInfoViewState extends State<ListInfoView> {
     return Container(
       alignment: AlignmentDirectional.centerStart,
       child: Text(
-        "Результат поиска".toUpperCase(),
+        "Searching results".toUpperCase(),
         style: TextStylesConsts.mainGrayStyle,
       ),
     );

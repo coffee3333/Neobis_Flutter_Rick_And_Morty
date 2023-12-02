@@ -42,6 +42,15 @@ class TextStylesConsts {
     fontFamily: 'Roboto',
     color: ColorsConsts.searchTextColor,
     fontWeight: FontWeight.w400,
+    fontSize: 14,
+    letterSpacing: 0.5,
+    height: 1.5,
+  );
+
+  static const TextStyle mainGrayBigerStyle = TextStyle(
+    fontFamily: 'Roboto',
+    color: ColorsConsts.searchTextColor,
+    fontWeight: FontWeight.w400,
     fontSize: 16,
     letterSpacing: 0.5,
     height: 1.5,

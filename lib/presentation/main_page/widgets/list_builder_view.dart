@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
+
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/item_view_builder.dart';
 import 'package:provider/provider.dart';
@@ -43,10 +45,29 @@ class _ListViewBuilderState extends State<ListViewBuilder> {
   }
 
   _errorSearchView() {
-    return const Center(
-      child: Text(
-        "Didn't find character",
-        style: TextStylesConsts.appBarWhiteStyle,
+    return Container(
+      margin: const EdgeInsets.only(top: 60),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            AssetsConsts.noCharactersIcon,
+          ),
+          const SizedBox(
+            height: 28,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            width: 220,
+            child: const Text(
+              "We didn't find character with this name",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStylesConsts.mainGrayBigerStyle,
+            ),
+          ),
+        ],
       ),
     );
   }

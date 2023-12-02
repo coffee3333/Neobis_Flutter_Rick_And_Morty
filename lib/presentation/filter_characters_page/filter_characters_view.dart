@@ -4,7 +4,6 @@ import 'package:neobis_flutter_rick_and_morty/core/consts/assets_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/provider_filter_charcters_page/filter_page_provider.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class FilterCharactersView extends StatefulWidget {
@@ -19,6 +18,11 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
   Widget build(BuildContext context) {
     return Consumer<FilterPageProvider>(
       builder: (context, provider, child) {
+        final List<Widget> widgets = <Widget>[
+          _getAlphabetMenu(),
+          _getStatusMenu(provider),
+          _getGenderMenu(provider)
+        ];
         return Scaffold(
           appBar: AppBar(
             backgroundColor: ColorsConsts.mainBgColor,
@@ -27,7 +31,7 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
             centerTitle: false,
             leading: UnconstrainedBox(
               child: GestureDetector(
-                onTap: () => Navigator.pop(context),
+                onTap: () => Navigator.of(context).pop(provider.params),
                 child: SvgPicture.asset(AssetsConsts.backArrowAppBarIcon),
               ),
             ),
@@ -36,14 +40,12 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
           body: Padding(
             padding:
                 const EdgeInsets.only(top: 30, left: 16, right: 30, bottom: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _getAlphabetMenu(),
-                _getSeparator(),
-                _getStatusMenu(provider),
-                _getGenderMenu(),
-              ],
+            child: ListView.separated(
+              itemBuilder: (context, index) {
+                return widgets[index];
+              },
+              separatorBuilder: (context, index) => _getSeparator(),
+              itemCount: widgets.length,
             ),
           ),
         );
@@ -53,7 +55,7 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
 
   _getSeparator() {
     return Container(
-      margin: const EdgeInsets.only(top: 36, bottom: 36),
+      margin: const EdgeInsets.only(top: 10, bottom: 30),
       decoration: BoxDecoration(
         border: Border.all(color: ColorsConsts.separatorColor, width: 2),
       ),
@@ -105,21 +107,27 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
           height: 29,
         ),
         Column(
-          children: [
-            Row(
-              children: [
-                Checkbox(
-                  // activeColor: Colors.white,
-                  value: false,
-                  onChanged: (value) {},
-                ),
-                const Text(
-                  "Alive",
-                  style: TextStylesConsts.nameItemWhiteStyle,
-                )
-              ],
-            )
-          ],
+            children: _chexkBoxStatusItemBuilder(provider.statuses, provider)),
+        const SizedBox(
+          height: 36,
+        ),
+      ],
+    );
+  }
+
+  _getGenderMenu(FilterPageProvider provider) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Gender".toUpperCase(),
+          style: TextStylesConsts.mainGrayStyle,
+        ),
+        const SizedBox(
+          height: 29,
+        ),
+        Column(
+          children: _chexkBoxGenderItemBuilder(provider.genders, provider),
         ),
         const SizedBox(
           height: 36,
@@ -128,7 +136,75 @@ class _FilterCharactersViewState extends State<FilterCharactersView> {
     );
   }
 
-  _getGenderMenu() {
-    return const Expanded(child: Placeholder());
+  List<Widget> _chexkBoxGenderItemBuilder(
+      Map<String, bool> items, FilterPageProvider provider) {
+    final List<Widget> widgets = [];
+    items.forEach(
+      (key, value) {
+        widgets.add(Row(
+          children: [
+            Checkbox(
+              side: MaterialStateBorderSide.resolveWith((states) =>
+                  const BorderSide(
+                      width: 1, color: ColorsConsts.checkBoxBorderColor)),
+              value: provider.getParamGender(key),
+              onChanged: (value) {
+                provider.getParamGender(key)
+                    ? null
+                    : provider.setParamGender(key);
+              },
+            ),
+            GestureDetector(
+              onTap: () {
+                provider.getParamGender(key)
+                    ? null
+                    : provider.setParamGender(key);
+              },
+              child: Text(
+                key.isEmpty ? "All" : key,
+                style: TextStylesConsts.mainWhiteStyle,
+              ),
+            )
+          ],
+        ));
+      },
+    );
+    return widgets;
+  }
+
+  List<Widget> _chexkBoxStatusItemBuilder(
+      Map<String, bool> items, FilterPageProvider provider) {
+    final List<Widget> widgets = [];
+    items.forEach(
+      (key, value) {
+        widgets.add(Row(
+          children: [
+            Checkbox(
+              side: MaterialStateBorderSide.resolveWith((states) =>
+                  const BorderSide(
+                      width: 1, color: ColorsConsts.checkBoxBorderColor)),
+              value: provider.getParamStatus(key),
+              onChanged: (value) {
+                provider.getParamStatus(key)
+                    ? null
+                    : provider.setParamStatus(key);
+              },
+            ),
+            GestureDetector(
+              onTap: () {
+                provider.getParamStatus(key)
+                    ? null
+                    : provider.setParamStatus(key);
+              },
+              child: Text(
+                key.isEmpty ? "All" : key,
+                style: TextStylesConsts.mainWhiteStyle,
+              ),
+            )
+          ],
+        ));
+      },
+    );
+    return widgets;
   }
 }

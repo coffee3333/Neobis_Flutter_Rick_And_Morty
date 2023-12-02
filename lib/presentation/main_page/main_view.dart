@@ -6,7 +6,6 @@ import 'package:neobis_flutter_rick_and_morty/core/consts/colors_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/routes_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/core/consts/texts_styles_consts.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/provider_main_page/main_page_provider.dart';
-import 'package:neobis_flutter_rick_and_morty/presentation/filter_characters_page/filter_characters_view.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/list_builder_view.dart';
 import 'package:neobis_flutter_rick_and_morty/presentation/main_page/widgets/list_info_view.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,6 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   final _searchController = TextEditingController();
-
   Timer? _debounce;
 
   @override
@@ -40,22 +38,26 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsConsts.mainBgColor,
-      appBar: _getAppBar(),
-      body: const Padding(
-        padding: EdgeInsets.only(top: 30, left: 16, right: 30),
-        child: Column(
-          children: [
-            ListInfoView(),
-            ListViewBuilder(),
-          ],
-        ),
-      ),
+    return Consumer<MainPageProvider>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          backgroundColor: ColorsConsts.mainBgColor,
+          appBar: _getAppBar(provider),
+          body: const Padding(
+            padding: EdgeInsets.only(top: 30, left: 16, right: 30),
+            child: Column(
+              children: [
+                ListInfoView(),
+                ListViewBuilder(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
-  AppBar _getAppBar() {
+  AppBar _getAppBar(MainPageProvider provider) {
     return AppBar(
       backgroundColor: ColorsConsts.mainBgColor,
       elevation: 0,
@@ -90,7 +92,13 @@ class _MainViewState extends State<MainView> {
                 const SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesConsts.filterCharacters);
+                    Navigator.pushNamed(context, RoutesConsts.filterCharacters,
+                            arguments: provider.filterParams)
+                        .then((value) {
+                      if (value != null) {
+                        provider.updateFilterParams(value);
+                      }
+                    });
                   },
                   child: UnconstrainedBox(
                     child: SvgPicture.asset(AssetsConsts.appBarSortIcon),
@@ -99,7 +107,7 @@ class _MainViewState extends State<MainView> {
               ],
             ),
           ),
-          hintText: 'Найти персонажа',
+          hintText: 'Search chracter',
           hintStyle: TextStylesConsts.mainGrayStyle,
         ),
         onChanged: _onTextChanged,
